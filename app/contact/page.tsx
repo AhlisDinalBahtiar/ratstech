@@ -258,7 +258,7 @@ export default function ContactPage() {
                         label="Full Name"
                         name="name"
                         required
-                        placeholder="John Doe"
+                        placeholder="Your Full Name"
                         value={formData.name}
                         onChange={handleChange}
                       />
@@ -267,7 +267,7 @@ export default function ContactPage() {
                         name="email"
                         type="email"
                         required
-                        placeholder="john@example.com"
+                        placeholder="Your Email Address"
                         value={formData.email}
                         onChange={handleChange}
                       />
@@ -278,7 +278,7 @@ export default function ContactPage() {
                         label="Phone Number"
                         name="phone"
                         type="tel"
-                        placeholder="+62 812-3456-7890"
+                        placeholder="Your Phone Number"
                         value={formData.phone}
                         onChange={handleChange}
                       />
