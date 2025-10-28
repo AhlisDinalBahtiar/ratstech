@@ -28,7 +28,7 @@ export default function Navbar({ isScrolled, mobileMenuOpen, setMobileMenuOpen }
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
           <Link href="/" className="text-sm font-semibold hover:text-blue-600 transition-colors">Home</Link>
-          <Link href="/services" className="text-sm font-semibold hover:text-blue-600 transition-colors">Services</Link>
+          <Link href="/ourservices" className="text-sm font-semibold hover:text-blue-600 transition-colors">Services</Link>
           <Link href="/portfolio" className="text-sm font-semibold hover:text-blue-600 transition-colors">Portfolio</Link>
           <Link href="/about" className="text-sm font-semibold hover:text-blue-600 transition-colors">About</Link>
           <Link href="/contact">
@@ -52,7 +52,7 @@ export default function Navbar({ isScrolled, mobileMenuOpen, setMobileMenuOpen }
         <div className="md:hidden bg-white border-t border-gray-200 shadow-xl">
           <div className="px-6 py-4 space-y-3">
             <Link href="/" className="block py-2 text-sm font-semibold hover:text-blue-600 transition-colors">Home</Link>
-            <Link href="/services" className="block py-2 text-sm font-semibold hover:text-blue-600 transition-colors">Services</Link>
+            <Link href="/ourservices" className="block py-2 text-sm font-semibold hover:text-blue-600 transition-colors">Services</Link>
             <Link href="/portfolio" className="block py-2 text-sm font-semibold hover:text-blue-600 transition-colors">Portfolio</Link>
             <Link href="/about" className="block py-2 text-sm font-semibold hover:text-blue-600 transition-colors">About</Link>
             <Link href="/contact">
