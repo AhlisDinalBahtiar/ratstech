@@ -15,7 +15,7 @@ export default function Footer() {
                 <Zap className="text-white" size={20} />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-                TechFlow
+                RatsTech
               </span>
             </div>
             <p className="text-gray-600 text-sm mb-4 leading-relaxed">
@@ -56,18 +56,18 @@ export default function Footer() {
           <div>
             <h4 className="font-black mb-4 text-gray-900 text-base">Contact Info</h4>
             <ul className="space-y-2 text-sm text-gray-600">
-              <li className="font-medium">📧 hello@techflow.com</li>
+              <li className="font-medium">📧 ahlzdinal@gmail.com</li>
               <li className="font-medium">📞 +62 812-3456-7890</li>
-              <li className="font-medium">📍 Jakarta, Indonesia</li>
+              <li className="font-medium">📍 Semarang, Indonesia</li>
             </ul>
           </div>
         </div>
         <div className="border-t border-gray-200 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-gray-600 text-sm font-medium">
-            &copy; 2025 TechFlow Agency. All rights reserved.
+            &copy; 2025 RatsTech Agency. All rights reserved.
           </div>
           <div className="text-gray-500 text-sm">
-            Built with ❤️ using Next.js &amp; TypeScript
+            Built with ❤️ RatsTech
           </div>
         </div>
       </div>

@@ -22,21 +22,21 @@ const testimonials: Testimonial[] = [
     role: 'CTO, StartupXYZ',
     content: 'TechFlow transformed our vision into a stunning reality. Their attention to detail and technical expertise is unmatched. The team went above and beyond to ensure our success.',
     rating: 5,
-    avatar: '👩‍💼'
+    avatar: '👤'
   },
   {
     name: 'Farisah Ghassani',
     role: 'CTO, InnovateCorp',
     content: 'The AI chatbot they developed has significantly improved our customer satisfaction rates. Highly recommended! Response time decreased by 80% and our team is more productive.',
     rating: 5,
-    avatar: '👨‍💻'
+    avatar: '👤'
   },
   {
     name: 'Muhammad Anugerah',
     role: 'Product Manager, TechStart',
     content: 'Outstanding UI/UX work! Our user engagement increased by 150% after the redesign. The team truly understands modern design principles and user psychology.',
     rating: 5,
-    avatar: '👩‍🎨'
+    avatar: '👤'
   }
 ];
 

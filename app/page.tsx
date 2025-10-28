@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Navbar from './components/navbar';
+import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import TechStack from './components/TechStack';
 import Services from './components/Services';
@@ -11,6 +11,7 @@ import Benefits from './components/Benefits';
 import Testimonials from './components/Testimonials';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
+import ChatbotWidget from './components/ChatbotWidget';
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,6 +19,8 @@ export default function Home() {
   const [activeService, setActiveService] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [chatOpen, setChatOpen] = useState(false);
+  const [showChatPrompt, setShowChatPrompt] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,6 +78,13 @@ export default function Home() {
       <CTA />
       
       <Footer />
+
+      <ChatbotWidget 
+        chatOpen={chatOpen}
+        setChatOpen={setChatOpen}
+        showChatPrompt={showChatPrompt}
+        setShowChatPrompt={setShowChatPrompt}
+      />
     </div>
   );
 }

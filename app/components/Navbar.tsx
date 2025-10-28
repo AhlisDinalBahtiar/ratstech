@@ -21,7 +21,7 @@ export default function Navbar({ isScrolled, mobileMenuOpen, setMobileMenuOpen }
             <Zap className="text-white" size={20} />
           </div>
           <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-            TechFlow
+            RatsTech
           </span>
         </Link>
 

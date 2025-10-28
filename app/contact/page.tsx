@@ -4,6 +4,125 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Clock, CheckCircle, ArrowLeft, Zap, MessageSquare, Calendar } from 'lucide-react';
 import Link from 'next/link';
 
+// Contact Info Card Component
+const ContactInfoCard = ({ icon: Icon, title, value, subtext, color }) => (
+  <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all border-2 border-gray-100 hover:border-blue-200 group">
+    <div className={`w-14 h-14 bg-gradient-to-br ${color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg`}>
+      <Icon className="text-white" size={28} />
+    </div>
+    <h3 className="font-bold text-lg mb-1">{title}</h3>
+    <p className="text-blue-600 font-semibold mb-1">{value}</p>
+    <p className="text-sm text-gray-500">{subtext}</p>
+  </div>
+);
+
+// Working Hours Component
+const WorkingHours = () => (
+  <div className="bg-gradient-to-br from-blue-600 to-cyan-600 rounded-3xl p-8 text-white shadow-xl">
+    <Clock className="mb-4" size={40} />
+    <h3 className="text-xl font-black mb-4">Working Hours</h3>
+    <div className="space-y-3">
+      <div className="flex justify-between items-center pb-3 border-b border-white/20">
+        <span className="font-semibold">Monday - Friday</span>
+        <span className="font-bold">9:00 AM - 6:00 PM</span>
+      </div>
+      <div className="flex justify-between items-center pb-3 border-b border-white/20">
+        <span className="font-semibold">Saturday</span>
+        <span className="font-bold">10:00 AM - 4:00 PM</span>
+      </div>
+      <div className="flex justify-between items-center">
+        <span className="font-semibold">Sunday</span>
+        <span className="font-bold">Closed</span>
+      </div>
+    </div>
+  </div>
+);
+
+// Process Steps Component
+const ProcessSteps = () => {
+  const steps = [
+    { num: 1, title: 'Initial Response', desc: 'We\'ll review your request and get back to you within 24 hours', color: 'blue' },
+    { num: 2, title: 'Discovery Call', desc: '30-minute call to discuss your project in detail', color: 'cyan' },
+    { num: 3, title: 'Proposal & Timeline', desc: 'Receive a detailed proposal with timeline and pricing', color: 'purple' }
+  ];
+
+  return (
+    <div className="bg-white rounded-3xl p-8 shadow-xl border-2 border-gray-100">
+      <Calendar className="text-blue-600 mb-4" size={40} />
+      <h3 className="text-xl font-black mb-4">What Happens Next?</h3>
+      <div className="space-y-4">
+        {steps.map(step => (
+          <div key={step.num} className="flex gap-3">
+            <div className={`w-8 h-8 bg-${step.color}-100 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-${step.color}-600`}>
+              {step.num}
+            </div>
+            <div>
+              <h4 className="font-bold mb-1">{step.title}</h4>
+              <p className="text-sm text-gray-600">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// FAQ Component
+const FAQ = () => {
+  const faqs = [
+    { q: 'Do you offer free consultation?', a: 'Yes! Initial consultation is completely free.' },
+    { q: 'What\'s your typical project timeline?', a: 'Varies by project, usually 4-12 weeks for full projects.' },
+    { q: 'Do you work with startups?', a: 'Absolutely! We love working with startups and scale-ups.' },
+    { q: 'Do you provide ongoing support?', a: 'Yes, we offer maintenance and support packages after launch.' }
+  ];
+
+  return (
+    <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 border-2 border-purple-100">
+      <h3 className="text-xl font-black mb-4">Quick FAQ</h3>
+      <div className="space-y-4 text-sm">
+        {faqs.map((faq, idx) => (
+          <div key={idx}>
+            <h4 className="font-bold mb-1">{faq.q}</h4>
+            <p className="text-gray-600">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// Success Message Component
+const SuccessMessage = () => (
+  <div className="text-center py-12">
+    <div className="relative inline-flex mb-4">
+      <div className="absolute inset-0 bg-green-400/20 rounded-full blur-xl animate-pulse" />
+      <CheckCircle className="relative text-green-500" size={64} />
+    </div>
+    <h3 className="text-2xl font-bold text-green-600 mb-2">Message Sent Successfully!</h3>
+    <p className="text-gray-600">We&apos;ll get back to you within 24 hours.</p>
+  </div>
+);
+
+// Form Input Component
+const FormInput = ({ label, name, type = 'text', required = false, placeholder, value, onChange, ...props }) => (
+  <div>
+    <label className="block text-sm font-bold text-gray-700 mb-2">
+      {label} {required && <span className="text-red-500">*</span>}
+    </label>
+    <input
+      type={type}
+      name={name}
+      value={value}
+      onChange={onChange}
+      required={required}
+      className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-all"
+      placeholder={placeholder}
+      {...props}
+    />
+  </div>
+);
+
+// Main Contact Page Component
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -19,24 +138,17 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
     setIsSubmitting(false);
     setIsSuccess(true);
     
-    // Reset form after 3 seconds
     setTimeout(() => {
       setIsSuccess(false);
       setFormData({
@@ -53,27 +165,9 @@ export default function ContactPage() {
   };
 
   const contactInfo = [
-    {
-      icon: Mail,
-      title: 'Email Us',
-      value: 'hello@techflow.com',
-      subtext: 'We reply within 24 hours',
-      color: 'from-blue-500 to-cyan-500'
-    },
-    {
-      icon: Phone,
-      title: 'Call Us',
-      value: '+62 812-3456-7890',
-      subtext: 'Mon-Fri 9:00 AM - 6:00 PM',
-      color: 'from-purple-500 to-pink-500'
-    },
-    {
-      icon: MapPin,
-      title: 'Visit Us',
-      value: 'Jakarta, Indonesia',
-      subtext: 'By appointment only',
-      color: 'from-orange-500 to-red-500'
-    }
+    { icon: Mail, title: 'Email Us', value: 'ahlzdinal@gmail.com', subtext: 'We reply within 24 hours', color: 'from-blue-500 to-cyan-500' },
+    { icon: Phone, title: 'Call Us', value: '+62 812-3456-7890', subtext: 'Mon-Fri 9:00 AM - 6:00 PM', color: 'from-purple-500 to-pink-500' },
+    { icon: MapPin, title: 'Visit Us', value: 'Semarang, Indonesia', subtext: 'By appointment only', color: 'from-orange-500 to-red-500' }
   ];
 
   const serviceOptions = [
@@ -85,10 +179,10 @@ export default function ContactPage() {
   ];
 
   const budgetOptions = [
-    { value: 'small', label: 'Under $5,000' },
-    { value: 'medium', label: '$5,000 - $15,000' },
-    { value: 'large', label: '$15,000 - $50,000' },
-    { value: 'enterprise', label: 'Above $50,000' }
+    { value: 'small', label: 'Under $100' },
+    { value: 'medium', label: '$100 - $500' },
+    { value: 'large', label: '$500 - $1000' },
+    { value: 'enterprise', label: 'Above $1000' }
   ];
 
   return (
@@ -102,7 +196,7 @@ export default function ContactPage() {
                 <Zap className="text-white" size={24} />
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-                TechFlow
+                RatsTech
               </span>
             </Link>
             
@@ -129,32 +223,22 @@ export default function ContactPage() {
               <MessageSquare size={18} />
               Get In Touch
             </div>
-            <h1 className="text-5xl md:text-7xl font-black mb-6">
+            <h1 className="text-4xl md:text-5xl font-black mb-6">
               Let&apos;s Build Something
               <span className="block bg-gradient-to-r from-blue-600 via-cyan-600 to-purple-600 bg-clip-text text-transparent">
                 Amazing Together
               </span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Ready to transform your ideas into reality? Fill out the form below and our team will get back to you within 24 hours
             </p>
           </div>
 
           {/* Contact Info Cards */}
           <div className="grid md:grid-cols-3 gap-6 mb-16">
-            {contactInfo.map((info, idx) => {
-              const Icon = info.icon;
-              return (
-                <div key={idx} className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all border-2 border-gray-100 hover:border-blue-200 group">
-                  <div className={`w-14 h-14 bg-gradient-to-br ${info.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg`}>
-                    <Icon className="text-white" size={28} />
-                  </div>
-                  <h3 className="font-bold text-lg mb-1">{info.title}</h3>
-                  <p className="text-blue-600 font-semibold mb-1">{info.value}</p>
-                  <p className="text-sm text-gray-500">{info.subtext}</p>
-                </div>
-              );
-            })}
+            {contactInfo.map((info, idx) => (
+              <ContactInfoCard key={idx} {...info} />
+            ))}
           </div>
 
           {/* Main Content */}
@@ -162,83 +246,55 @@ export default function ContactPage() {
             {/* Contact Form */}
             <div className="lg:col-span-3">
               <div className="bg-white rounded-3xl p-8 md:p-10 shadow-2xl border-2 border-gray-100">
-                <h2 className="text-3xl font-black mb-2">Get Free Consultation</h2>
+                <h2 className="text-2xl font-black mb-2">Get Free Consultation</h2>
                 <p className="text-gray-600 mb-8">Fill out the form and we&apos;ll be in touch as soon as possible</p>
 
                 {isSuccess ? (
-                  <div className="text-center py-12">
-                    <CheckCircle className="mx-auto text-green-500 mb-4" size={64} />
-                    <h3 className="text-2xl font-bold text-green-600 mb-2">Message Sent Successfully!</h3>
-                    <p className="text-gray-600">We&apos;ll get back to you within 24 hours.</p>
-                  </div>
+                  <SuccessMessage />
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-2">
-                          Full Name *
-                        </label>
-                        <input
-                          type="text"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-all"
-                          placeholder="John Doe"
-                        />
-                      </div>
+                      <FormInput
+                        label="Full Name"
+                        name="name"
+                        required
+                        placeholder="John Doe"
+                        value={formData.name}
+                        onChange={handleChange}
+                      />
+                      <FormInput
+                        label="Email Address"
+                        name="email"
+                        type="email"
+                        required
+                        placeholder="john@example.com"
+                        value={formData.email}
+                        onChange={handleChange}
+                      />
+                    </div>
 
-                      <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-2">
-                          Email Address *
-                        </label>
-                        <input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-all"
-                          placeholder="john@example.com"
-                        />
-                      </div>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <FormInput
+                        label="Phone Number"
+                        name="phone"
+                        type="tel"
+                        placeholder="+62 812-3456-7890"
+                        value={formData.phone}
+                        onChange={handleChange}
+                      />
+                      <FormInput
+                        label="Company Name"
+                        name="company"
+                        placeholder="Your Company"
+                        value={formData.company}
+                        onChange={handleChange}
+                      />
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-sm font-bold text-gray-700 mb-2">
-                          Phone Number
-                        </label>
-                        <input
-                          type="tel"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-all"
-                          placeholder="+62 812-3456-7890"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-2">
-                          Company Name
-                        </label>
-                        <input
-                          type="text"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-all"
-                          placeholder="Your Company"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-2">
-                          Service Interested In *
+                          Service Interested In <span className="text-red-500">*</span>
                         </label>
                         <select
                           name="service"
@@ -277,48 +333,28 @@ export default function ContactPage() {
 
                     <div>
                       <label className="block text-sm font-bold text-gray-700 mb-2">
-                        Preferred Contact Method *
+                        Preferred Contact Method <span className="text-red-500">*</span>
                       </label>
                       <div className="flex gap-4">
-                        <label className="flex items-center cursor-pointer">
-                          <input
-                            type="radio"
-                            name="preferredContact"
-                            value="email"
-                            checked={formData.preferredContact === 'email'}
-                            onChange={handleChange}
-                            className="mr-2"
-                          />
-                          <span className="text-gray-700 font-medium">Email</span>
-                        </label>
-                        <label className="flex items-center cursor-pointer">
-                          <input
-                            type="radio"
-                            name="preferredContact"
-                            value="phone"
-                            checked={formData.preferredContact === 'phone'}
-                            onChange={handleChange}
-                            className="mr-2"
-                          />
-                          <span className="text-gray-700 font-medium">Phone</span>
-                        </label>
-                        <label className="flex items-center cursor-pointer">
-                          <input
-                            type="radio"
-                            name="preferredContact"
-                            value="whatsapp"
-                            checked={formData.preferredContact === 'whatsapp'}
-                            onChange={handleChange}
-                            className="mr-2"
-                          />
-                          <span className="text-gray-700 font-medium">WhatsApp</span>
-                        </label>
+                        {['email', 'phone', 'whatsapp'].map(method => (
+                          <label key={method} className="flex items-center cursor-pointer">
+                            <input
+                              type="radio"
+                              name="preferredContact"
+                              value={method}
+                              checked={formData.preferredContact === method}
+                              onChange={handleChange}
+                              className="mr-2"
+                            />
+                            <span className="text-gray-700 font-medium capitalize">{method}</span>
+                          </label>
+                        ))}
                       </div>
                     </div>
 
                     <div>
                       <label className="block text-sm font-bold text-gray-700 mb-2">
-                        Project Details *
+                        Project Details <span className="text-red-500">*</span>
                       </label>
                       <textarea
                         name="message"
@@ -355,79 +391,9 @@ export default function ContactPage() {
 
             {/* Sidebar */}
             <div className="lg:col-span-2 space-y-6">
-              {/* Working Hours */}
-              <div className="bg-gradient-to-br from-blue-600 to-cyan-600 rounded-3xl p-8 text-white shadow-xl">
-                <Clock className="mb-4" size={40} />
-                <h3 className="text-2xl font-black mb-4">Working Hours</h3>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center pb-3 border-b border-white/20">
-                    <span className="font-semibold">Monday - Friday</span>
-                    <span className="font-bold">9:00 AM - 6:00 PM</span>
-                  </div>
-                  <div className="flex justify-between items-center pb-3 border-b border-white/20">
-                    <span className="font-semibold">Saturday</span>
-                    <span className="font-bold">10:00 AM - 4:00 PM</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="font-semibold">Sunday</span>
-                    <span className="font-bold">Closed</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick Info */}
-              <div className="bg-white rounded-3xl p-8 shadow-xl border-2 border-gray-100">
-                <Calendar className="text-blue-600 mb-4" size={40} />
-                <h3 className="text-2xl font-black mb-4">What Happens Next?</h3>
-                <div className="space-y-4">
-                  <div className="flex gap-3">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-blue-600">
-                      1
-                    </div>
-                    <div>
-                      <h4 className="font-bold mb-1">Initial Response</h4>
-                      <p className="text-sm text-gray-600">We&apos;ll review your request and get back to you within 24 hours</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <div className="w-8 h-8 bg-cyan-100 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-cyan-600">
-                      2
-                    </div>
-                    <div>
-                      <h4 className="font-bold mb-1">Discovery Call</h4>
-                      <p className="text-sm text-gray-600">30-minute call to discuss your project in detail</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-purple-600">
-                      3
-                    </div>
-                    <div>
-                      <h4 className="font-bold mb-1">Proposal & Timeline</h4>
-                      <p className="text-sm text-gray-600">Receive a detailed proposal with timeline and pricing</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* FAQ */}
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 border-2 border-purple-100">
-                <h3 className="text-2xl font-black mb-4">Quick FAQ</h3>
-                <div className="space-y-4 text-sm">
-                  <div>
-                    <h4 className="font-bold mb-1">Do you offer free consultation?</h4>
-                    <p className="text-gray-600">Yes! Initial consultation is completely free.</p>
-                  </div>
-                  <div>
-                    <h4 className="font-bold mb-1">What&apos;s your typical project timeline?</h4>
-                    <p className="text-gray-600">Varies by project, usually 4-12 weeks for full projects.</p>
-                  </div>
-                  <div>
-                    <h4 className="font-bold mb-1">Do you work with startups?</h4>
-                    <p className="text-gray-600">Absolutely! We love working with startups and scale-ups.</p>
-                  </div>
-                </div>
-              </div>
+              <WorkingHours />
+              <ProcessSteps />
+              <FAQ />
             </div>
           </div>
         </div>
@@ -441,14 +407,31 @@ export default function ContactPage() {
               <Zap className="text-white" size={20} />
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-              TechFlow
+              RatsTech
             </span>
           </div>
           <p className="text-gray-600 text-sm">
-            &copy; 2025 TechFlow Agency. All rights reserved.
+            &copy; 2025 RatsTech Agency. All rights reserved.
           </p>
         </div>
       </footer>
+
+      <style jsx global>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        @keyframes float-delay {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-30px); }
+        }
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        .animate-float-delay {
+          animation: float-delay 8s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 }
