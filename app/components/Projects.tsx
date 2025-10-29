@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface Project {
   name: string;
@@ -48,6 +49,8 @@ const projects: Project[] = [
 ];
 
 export default function Projects() {
+  const router = useRouter();
+
   return (
     <section className="py-20 px-6 bg-gray-50">
       <div className="max-w-6xl mx-auto">
@@ -74,8 +77,11 @@ export default function Projects() {
                   <h3 className="text-2xl font-black mb-3 group-hover:text-blue-600 transition-colors">{project.name}</h3>
                   <p className="text-gray-600 mb-4 text-sm">{project.desc}</p>
                 </div>
-                <button className="flex items-center gap-2 text-blue-600 font-bold text-sm group-hover:gap-4 transition-all">
-                  View Case Study
+                <button
+                  onClick={() => router.push('/portfolio')}
+                  className="flex items-center gap-2 text-blue-600 font-bold text-sm group-hover:gap-4 transition-all"
+                >
+                  View Portfolio
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
