@@ -6,7 +6,8 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'TechFlow Agency - Web Development, AI Chatbot & UI/UX Design',
-  description: 'Transform your ideas into reality with cutting-edge web development, intelligent AI chatbots, and stunning UI/UX design.',
+  description:
+    'Transform your ideas into reality with cutting-edge web development, intelligent AI chatbots, and stunning UI/UX design.',
 };
 
 export default function RootLayout({
@@ -16,6 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      </head>
       <body className={inter.className}>
         {children}
       </body>
