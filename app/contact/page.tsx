@@ -5,7 +5,13 @@ import { Mail, Phone, MapPin, Send, Clock, CheckCircle, ArrowLeft, Zap, MessageS
 import Link from 'next/link';
 
 // Contact Info Card Component
-const ContactInfoCard = ({ icon: Icon, title, value, subtext, color }) => (
+const ContactInfoCard = ({ icon: Icon, title, value, subtext, color }: {
+  icon: React.ElementType;
+  title: string;
+  value: string;
+  subtext: string;
+  color: string;
+}) => (
   <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all border-2 border-gray-100 hover:border-blue-200 group">
     <div className={`w-14 h-14 bg-gradient-to-br ${color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg`}>
       <Icon className="text-white" size={28} />
@@ -104,7 +110,16 @@ const SuccessMessage = () => (
 );
 
 // Form Input Component
-const FormInput = ({ label, name, type = 'text', required = false, placeholder, value, onChange, ...props }) => (
+const FormInput = ({ label, name, type = 'text', required = false, placeholder, value, onChange, ...props }: {
+  label: string;
+  name: string;
+  type?: string;
+  required?: boolean;
+  placeholder: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  [key: string]: any;
+}) => (
   <div>
     <label className="block text-sm font-bold text-gray-700 mb-2">
       {label} {required && <span className="text-red-500">*</span>}
@@ -138,11 +153,11 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     await new Promise(resolve => setTimeout(resolve, 2000));
