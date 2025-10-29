@@ -29,7 +29,7 @@ export default function PortfolioPage() {
       tags: ['Next.js', 'Tailwind', 'CMS'],
       color: 'from-blue-500 to-cyan-500',
       gradient: 'from-blue-50 to-cyan-50',
-      link: '#'
+      link: 'https://pkprisurakarta.com/'
     },
     {
       name: 'AI Chatbot',
@@ -39,7 +39,7 @@ export default function PortfolioPage() {
       tags: ['AI', 'NLP', 'React'],
       color: 'from-purple-500 to-pink-500',
       gradient: 'from-purple-50 to-pink-50',
-      link: '#'
+      link: 'https://pkprisurakarta.com/'
     },
     {
       name: 'UI/UX Design',
@@ -49,7 +49,7 @@ export default function PortfolioPage() {
       tags: ['Figma', 'Prototype', 'User Research'],
       color: 'from-orange-500 to-red-500',
       gradient: 'from-orange-50 to-red-50',
-      link: '#'
+      link: 'https://pkprisurakarta.com/'
     },
     {
       name: 'Dashboard Monitoring Website',
@@ -59,7 +59,7 @@ export default function PortfolioPage() {
       tags: ['React', 'Charts', 'Real-time'],
       color: 'from-green-500 to-teal-500',
       gradient: 'from-green-50 to-teal-50',
-      link: '#'
+      link: 'https://pkprisurakarta.com/'
     },
     {
       name: 'E-Learning Platform',
@@ -69,7 +69,7 @@ export default function PortfolioPage() {
       tags: ['Next.js', 'Video', 'LMS'],
       color: 'from-indigo-500 to-purple-500',
       gradient: 'from-indigo-50 to-purple-50',
-      link: '#'
+      link: 'https://pkprisurakarta.com/'
     },
     {
       name: 'Instagram Design',
@@ -79,7 +79,7 @@ export default function PortfolioPage() {
       tags: ['Mobile', 'UI/UX', 'Prototyping'],
       color: 'from-pink-500 to-rose-500',
       gradient: 'from-pink-50 to-rose-50',
-      link: '#'
+      link: 'https://pkprisurakarta.com/'
     }
   ];
 
@@ -198,10 +198,16 @@ export default function PortfolioPage() {
                     {project.desc}
                   </p>
                   
-                  <button className="flex items-center gap-2 text-blue-600 font-bold text-sm group-hover:gap-4 transition-all">
-                    View Case Study
-                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <button className="flex items-center gap-2 text-blue-600 font-bold text-sm group-hover:gap-4 transition-all">
+                      View Case Detail
+                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </a>
                 </div>
               </div>
             ))}
